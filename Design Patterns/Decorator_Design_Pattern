@@ -1,0 +1,65 @@
+
+
+public class Decorator {
+
+    public static void main(String[] args) {
+
+        Webpage page1= new  Authentica_User (new SimpleWebpage());
+        page1.display();
+        
+    }
+    
+}
+
+
+interface Webpage{
+
+    void display();
+}
+
+class SimpleWebpage implements Webpage{
+
+   public void display(){
+
+        System.out.println("This is Simple Webpage");
+    }
+
+
+}
+
+abstract class Decorator1 implements Webpage{
+
+    protected Webpage webpage;
+
+    public Decorator1(Webpage webpage){
+
+        this.webpage=webpage;
+    }
+
+    public void display(){
+
+        webpage.display();
+    }
+
+
+}
+
+class Authentica_User extends Decorator1{
+
+    public Authentica_User(Webpage webpage){
+
+        super(webpage);
+    }
+
+    public void display(){
+
+        super.display();
+        Authentication();
+
+    }
+
+    private void Authentication(){
+
+        System.out.println("Authenticating user credentials.... ");
+    }
+}
